@@ -1,0 +1,16 @@
+current directory: C:/RubyOnRails/BulletinboardRuby/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.7.5/ext/bootsnap
+C:/Ruby25-x64/bin/ruby.exe -I C:/Ruby25-x64/lib/ruby/site_ruby/2.5.0 -r ./siteconf20210505-15756-1pdz87x.rb extconf.rb
+creating Makefile
+
+current directory: C:/RubyOnRails/BulletinboardRuby/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.7.5/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: C:/RubyOnRails/BulletinboardRuby/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.7.5/ext/bootsnap
+make DESTDIR\=
+generating bootsnap-x64-mingw32.def
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: C:/RubyOnRails/BulletinboardRuby/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.7.5/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20210505-15756-1ddqvjp/bootsnap
