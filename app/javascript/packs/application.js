@@ -11,3 +11,10 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+//= require jquery
+//= require popper
+//= require turbolinks
+//= require bootstrap
+//= require_tree.
+//= require bootstrap-modal

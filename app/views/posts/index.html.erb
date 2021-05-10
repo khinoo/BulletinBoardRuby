@@ -1,0 +1,59 @@
+<div class="container">
+	<div>
+	    <h3 class="text-left text-primary">Post List</h3>
+	</div>
+	<%= form_tag({ :action => :search_post }, { :method => :get, :html => { :style => 'width: 80%;' }}) do %>
+		<div class="form-group row">
+
+			<div class="form-group row">
+	            <div class="col-sm-5 col-form-label text-end"></div>
+	            <div class="col-sm-7"><%= text_field_tag :search, params[:search], class: "form-control" %></div>
+	        </div>
+
+	        <div class="form-group row">
+	            <div class="col-sm-1"></div>
+	            <div class="col-sm-2"><%= submit_tag ("Search"), class: 'btn btn-primary' %></div>
+	            <div class="col-sm-3"><%= link_to "Add Post",  new_post_path, class: 'btn btn-primary' %> </div>
+	            <div class="col-sm-3"><%= link_to "Upload",  upload_posts_path, class: 'btn btn-primary' %></div>
+	            <div class="col-sm-3"><%= link_to "Download",  posts_path(format: :csv), class: 'btn btn-primary' %></div>
+	        </div>
+		</div>
+	<% end %>
+</div>
+
+<div class="container">
+    <table class="table table-bordered">
+  	<thead>
+	    <tr>
+	      <th scope="col">Post Title</th>
+	      <th scope="col">Post Description</th>
+	      <th scope="col">Posted User</th>
+	      <th scope="col">Posted Date</th>
+	      <th scope="col">Edit Post</th>
+	      <th scope="col">Delete Post</th>
+	    </tr>
+  	</thead>
+  	<tbody>
+  		<% @posts.each do |post| %>
+	    <tr class="table-active" data-toggle="tooltip" data-placement="top" title="This Post is Active Post">
+        <tr>
+	      <th scope="row">
+	      	<%= link_to post.title, new_release_posts_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+	      	</th>
+	      <td><%= post.description %><span class="glyphicon glyphicon-trash"></span></td>
+	      <td></td>
+	      <td></td>
+	      <td><%= link_to "Edit", edit_post_path(post), class: 'btn btn-primary' %></td>
+          <td><%= link_to "Delete", post_path(post),class: 'btn btn-danger',
+	              method: :delete,
+	              data: { confirm: "Are you sure want to this post?" } %></td>
+        <% end %>
+  </tbody>
+</table>
+</div>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
