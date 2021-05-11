@@ -1,7 +1,7 @@
 class PostsRepository
 	class << self
-		def listAll
-			@posts = Post.where(deleted_at: nil)
+		def listAll(page)
+			@posts = Post.where(deleted_at: nil).paginate(:page => page, :per_page => 10)
 		end
 
 		def findPostById(id)

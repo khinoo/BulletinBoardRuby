@@ -1,7 +1,7 @@
 class PostsService
 	class << self
-		def listAll
-			@posts = PostsRepository.listAll
+		def listAll(page)
+			@posts = PostsRepository.listAll(page)
 		end
 
 		def findPostById(id)
