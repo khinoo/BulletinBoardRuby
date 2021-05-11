@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  #function PostList
+  #return all post
   def index
   	@posts = PostsService.listAll
     respond_to do |format|
@@ -7,14 +9,26 @@ class PostsController < ApplicationController
     end
   end
 
+  #function post detail
+  #params post id
+  #return post
   def show
   	@post = PostsService.findPostById(params[:id])
+	respond_to do |format|
+	   	format.html
+	    format.js
+	end
   end
 
+  #function new post
+  #return post
   def new
   	@post = PostsService.newPost
   end
 
+  #function create post form
+  #params post params
+  #return post create confirm 
   def create_form
     @post = Post.new(post_params)
     unless @post.valid?
@@ -24,12 +38,18 @@ class PostsController < ApplicationController
     end
   end
 
+  #function create post confirm
+  #params post params
+  #return create post
   def create_confirm
     @title = params[:title]
     @description = params[:description]
     @post = Post.new(title: @title, description: @description)
   end
 
+  #function create post
+  #params post params
+  #return created post
   def create
   	savePost = PostsService.createPost(post_params)
 
@@ -40,10 +60,16 @@ class PostsController < ApplicationController
   	end
   end
 
+  #function find edit post
+  #params post id 
+  #return post
   def edit
   	@post = PostsService.findPostById(params[:id])
   end
 
+  #function post edit form
+  #params post_params
+  #return update_confirm post
   def edit_form
     @post = Post.new(post_params)
     unless @post.valid?
@@ -53,6 +79,9 @@ class PostsController < ApplicationController
     end
   end
 
+  #function post update confirm
+  #params post params
+  #rerurn update confirm post
   def update_confirm
     @id = params[:id]
     @title = params[:title]
@@ -65,6 +94,9 @@ class PostsController < ApplicationController
     @post = Post.new(title: @title, description: @description, status: @status, id: @id)
   end
 
+  #function post update
+  #params post params
+  #return updated post
   def post_update
   	updatePost = PostsService.updatePost(post_params)
 
@@ -75,28 +107,27 @@ class PostsController < ApplicationController
   	end 
   end
 
+  #function post destroy
+  #params post id
   def destroy
   	PostsService.destroyPost(params[:id])
   	redirect_to root_path
   end
 
+  #function search post
+  #params search key
+  #return search post
   def search_post
     searchKey = params[:search]
     @posts = PostsService.searchPost(searchKey)
     render :index
   end
 
+  #function post import
+  #params post import file
   def import
   	Post.import(params[:file])
   	redirect_to root_url, notice: "Successfully Uploaded!!!"
-  end
-
-  def new_release
-  	@posts = PostsService.listAll
-	respond_to do |format|
-	   	format.html
-	    format.js
-	end
   end
 
   private

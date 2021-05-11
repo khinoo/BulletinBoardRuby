@@ -38,15 +38,30 @@
 	    <tr class="table-active" data-toggle="tooltip" data-placement="top" title="This Post is Active Post">
         <tr>
 	      <th scope="row">
-	      	<%= link_to post.title, new_release_posts_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
+	      	<%= link_to post.title, post_path(post),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
 	      	</th>
 	      <td><%= post.description %><span class="glyphicon glyphicon-trash"></span></td>
 	      <td></td>
-	      <td></td>
+	      <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
 	      <td><%= link_to "Edit", edit_post_path(post), class: 'btn btn-primary' %></td>
-          <td><%= link_to "Delete", post_path(post),class: 'btn btn-danger',
-	              method: :delete,
-	              data: { confirm: "Are you sure want to this post?" } %></td>
+	      <td><%= link_to 'Delete', '#', "data-toggle"=>"modal", "data-target" => "#delete-#{post.id}",:class=>'btn btn-danger' %>
+			    <div class="modal fade" id="delete-<%= post.id %>" role="dialog">
+			      <div class="modal-dialog">
+			        <div class="modal-content">
+			          <div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Post Detete Confirmation</h5>
+			          </div>
+			          <div class="modal-body">
+			            <p>Are you sure to delete this post ?</p>
+			          </div>
+			            <div class="modal-footer">
+			              <%= link_to 'Delete', post_path(post), method: :delete, :class => 'btn btn-danger' %>
+			                <a href="#" data-dismiss="modal" class="btn btn-info">Cancel</a>
+			            </div>
+			        </div>
+			      </div>
+			  </div>
+		   </td>
         <% end %>
   </tbody>
 </table>
