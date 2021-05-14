@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_053111) do
+ActiveRecord::Schema.define(version: 2021_05_14_012639) do
 
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.integer "status"
-    t.integer "created_user_id"
+    t.integer "create_user_id"
     t.integer "updated_user_id"
     t.integer "deleted_user_id"
     t.datetime "deleted_at"

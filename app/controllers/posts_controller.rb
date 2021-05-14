@@ -51,7 +51,7 @@ class PostsController < ApplicationController
   #params post params
   #return created post
   def create
-  	savePost = PostsService.createPost(post_params)
+  	savePost = PostsService.createPost(post_params,current_user)
 
   	if savePost
   		redirect_to posts_path
@@ -98,8 +98,7 @@ class PostsController < ApplicationController
   #params post params
   #return updated post
   def post_update
-  	updatePost = PostsService.updatePost(post_params)
-
+  	updatePost = PostsService.updatePost(post_params,current_user)
   	if updatePost
   		redirect_to posts_path
   	else
@@ -132,6 +131,6 @@ class PostsController < ApplicationController
 
   private
     def post_params
-    params.require(:post).permit(:id, :title, :description, :status)
+    params.require(:post).permit(:id, :title, :description, :status, :created_user_id, :updated_user_id, :updated_at)
   end
 end

@@ -12,12 +12,14 @@ class PostsService
 			@post = PostsRepository.newPost
 		end
 
-		def createPost(post)
-			savePost = PostsRepository.createPost(post)
+		def createPost(post,current_user)
+			savePost = PostsRepository.createPost(post,current_user)
 		end
 
-		def updatePost(post_form)
+		def updatePost(post_form,current_user)
 			post = findPostById(post_form[:id])
+			post.updated_user_id = current_user.id
+			post.updated_at = Time.now
 			updatePost = PostsRepository.updatePost(post,post_form)
 		end
 

@@ -25,6 +25,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate', '~> 3.1.1'
 #add bootstrap gem pagination
 gem 'bootstrap-will_paginate'
+#add jquery gem
+gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

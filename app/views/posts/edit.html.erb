@@ -9,13 +9,6 @@
 
                 <div class="card-body">  
                   	<%= form_with model: @post, url: edit_form_posts_path, :html => { :style => 'width: 80%;' } do |form| %>
-
-		                <ul>
-			                <% @post.errors.full_messages.each do |msg| %>
-			                    <li><%= msg %></li>
-			                <% end %>
-			            </ul>
-
                     <div class="form-group mb-3 row">
                         <div class="col-sm-5 col-form-label text-end"> <%= form.label :title %> </div>
                         <div class="col-sm-6"><%= form.text_field :title, class: "form-control" %></div>
