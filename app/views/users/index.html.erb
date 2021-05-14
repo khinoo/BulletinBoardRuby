@@ -39,11 +39,7 @@
 	      <td><%= user.phone %></td>
 	      <td><%= user.dob %></td>
 	      <td><%= user.created_at.strftime('%Y/%m/%d') %></td>
-	       <td><%= link_to "Delete", user_path(user),class: 'btn btn-danger',
-	              method: :delete,
-	              data: { confirm: "Are you sure want to this user?" } %></td>
-
- <!--          <td><%= link_to 'Delete', '#', "data-toggle"=>"modal", "data-target" => "#delete-#{user.id}",:class=>'btn btn-danger' %>
+          <td><%= link_to 'Delete', '#', "data-toggle"=>"modal", "data-target" => "#delete-#{user.id}",:class=>'btn btn-danger' %>
 			    <div class="modal fade" id="delete-<%= user.id %>" role="dialog">
 			      <div class="modal-dialog">
 			        <div class="modal-content">
@@ -60,7 +56,7 @@
 			        </div>
 			      </div>
 			  </div>
-		   </td> -->
+		   </td>
         <% end %>
   </tbody>
 </table>

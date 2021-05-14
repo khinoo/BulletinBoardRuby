@@ -24,7 +24,7 @@
       	</div>
       	<div class="form-group">
         	<label for="recipient-name" class="col-form-label">Created User:</label>
-        	<input type="text" class="form-control" id="recipient-name" value="<%= @post.created_user_id %>">
+        	<input type="text" class="form-control" id="recipient-name" value="<%= @post.created_user.name %>">
       	</div>
       	<div class="form-group">
         	<label for="recipient-name" class="col-form-label">Updated At:</label>
@@ -32,7 +32,7 @@
       	</div>
       	<div class="form-group">
         	<label for="recipient-name" class="col-form-label">Updated User:</label>
-        	<input type="text" class="form-control" id="recipient-name" value="<%= @post.updated_user_id %>">
+        	<input type="text" class="form-control" id="recipient-name" value="<%= @post.updated_user.name %>">
       	</div>
     </form>
 </div>
