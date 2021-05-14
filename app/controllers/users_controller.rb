@@ -72,7 +72,7 @@ class UsersController < ApplicationController
       	redirect_to users_path
     else
     	flash[:error] = "Error- please try to create an account again."
-      	render :new
+      render :new
     end
   end
 

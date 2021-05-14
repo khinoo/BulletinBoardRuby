@@ -15,8 +15,9 @@ class PostsRepository
         def createPost(post,current_user)
         	@post = Post.new(post)
         	@post.status = 1 # default 1 when post create
-        	@post.create_user_id = current_user.id
-      		@post.created_at = Time.now
+            @post.create_user_id = current_user.id
+            @post.updated_user_id = current_user.id
+            @post.updated_at = Time.now
         	savePost = @post.save
         end
 

@@ -12,6 +12,7 @@ class UsersRepository
             @user = User.new(user)
             @user.role = @user.role == "Admin" ? 0 : 1
             @user.create_user_id = current_user.id
+            @user.updated_user_id = current_user.id
             @user.created_at = Time.now
             saveUser = @user.save
         end

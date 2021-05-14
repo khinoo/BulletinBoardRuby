@@ -14,10 +14,10 @@ class PostsController < ApplicationController
   #return post
   def show
   	@post = PostsService.findPostById(params[:id])
-	respond_to do |format|
-	   	format.html
-	    format.js
-	end
+  	respond_to do |format|
+  	   	format.html
+  	    format.js
+  	end
   end
 
   #function new post
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
   def edit_form
     @post = Post.new(post_params)
     unless @post.valid?
-      render :new
+      render :edit
     else
       redirect_to :action => "update_confirm", title: @post.title, description: @post.description, state: @post.status,id: @post.id
     end
@@ -131,6 +131,6 @@ class PostsController < ApplicationController
 
   private
     def post_params
-    params.require(:post).permit(:id, :title, :description, :status, :created_user_id, :updated_user_id, :updated_at)
+    params.require(:post).permit(:id, :title, :description, :status, :create_user_id, :updated_user_id, :updated_at)
   end
 end

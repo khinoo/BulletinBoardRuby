@@ -10,6 +10,9 @@
                 <div class="card-body">  
                   <%= form_with model: @user, url: create_form_users_path, :html => { :style => 'width: 80%;' } do |form| %>
                     <ul>
+                        <% @user.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                        <% end %>
                     </ul>
                     <div class="form-group mb-3 row">
                         <div class="col-sm-5 col-form-label text-end"> <%= form.label "Name" %> </div>
@@ -61,6 +64,8 @@
                         <div class="col-sm-6"> <%= form.file_field :profile, style: 'height:150px;width:auto;' %> </div>
                         <label style="color: red;">*</label>
                     </div>
+                    <%= form.number_field :create_user_id, value: current_user.id.to_i, type: :hidden %>
+                    <%= form.number_field :updated_user_id, value: current_user.id.to_i, type: :hidden %>
                     <div class="form-group mb-3 row mb-0">
                       <div class="col-sm-5 col-form-label text-end"> </div>
                       <div class="col-sm-7">
