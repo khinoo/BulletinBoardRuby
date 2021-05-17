@@ -48,5 +48,13 @@ class UsersRepository
                 'profile'=> user_profile_param[:profile]
             )
         end
+
+        def updatePassword(user,password,current_user)
+            isUpdatePassword = user.update(
+              'password' => password,
+              'updated_user_id' => current_user.id,
+              'updated_at' => Time.now
+            )
+        end
 	end
 end

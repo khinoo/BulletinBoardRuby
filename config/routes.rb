@@ -38,6 +38,9 @@ Rails.application.routes.draw do
       post :user_update
       post :create_confirm
       get :create_confirm
+      get :change_password
+      post :update_password
+      get :update_password
     end
   end
   

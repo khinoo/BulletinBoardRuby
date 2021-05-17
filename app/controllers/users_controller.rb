@@ -92,6 +92,9 @@ class UsersController < ApplicationController
   	@user_profile_form = UserProfileForm.new(UserProfileForm.attributes(user, :edit_profile))
   end
 
+  #function user update profile
+  #params user profile params 
+  #return user profile form params
   def update_profile
 	@user_profile_form = UserProfileForm.new(user_profile_params)
 	if user_profile_params[:edit_profile].present?
@@ -110,8 +113,10 @@ class UsersController < ApplicationController
     end
   end
 
-
-   def update_confirm
+  #function user profile update confirm
+  #params user profile params
+  #return user profile confirm data
+  def update_confirm
    	@id = params[:id]
   	@name = params[:name]
     @email = params[:email]
@@ -124,6 +129,9 @@ class UsersController < ApplicationController
     @user = UserProfileForm.new(id: @id,name: @name, email: @email, role: @role, phone: @phone, dob: @dob, address: @address, profile: @profile)
   end
 
+  #function user_profile update
+  #params user profile params
+  #return update user
   def user_update
   	 saveupdateProfile = UsersService.updateProfile(user_profile_params)
   	 if saveupdateProfile 
@@ -132,6 +140,28 @@ class UsersController < ApplicationController
   	 	render :edit_profile
   	 end
   end
+
+  #function change_password
+  def change_password
+    @password_change_form = UserChangePasswordForm.new
+  end
+
+  # function: update password
+  # params: update password params
+  def update_password
+    @password_change_form = UserChangePasswordForm.new(change_password_params)
+    if !@password_change_form.valid?
+      render :change_password
+    else
+    updatePassword = UsersService.updatePassword(change_password_params,current_user)
+      if updatePassword
+        redirect_to users_path
+      else
+        redirect_to change_password_user_path, notice: "New Password and New Confirm Password must be same !!!."
+      end
+    end
+  end
+
   #function user destroy
   #params user id
   def destroy
@@ -155,5 +185,9 @@ class UsersController < ApplicationController
 
   def user_profile_params
   	params.require(:user_profile_form).permit(:id, :name, :email, :role, :phone, :dob, :address, :profile, :edit_profile)  	
+  end
+
+  def change_password_params
+    params.require(:user_change_password_form).permit(:id, :current_password, :new_password, :confirm_password)
   end
 end

@@ -3,21 +3,13 @@
 	    <h3 class="text-left text-primary">Post List</h3>
 	</div>
 	<%= form_tag({ :action => :search_post }, { :method => :get, :html => { :style => 'width: 80%;' }}) do %>
-		<div class="form-group row">
-
-			<div class="form-group row">
-	            <div class="col-sm-5 col-form-label text-end"></div>
-	            <div class="col-sm-7"><%= text_field_tag :search, params[:search], class: "form-control" %></div>
-	        </div>
-
-	        <div class="form-group row">
-	            <div class="col-sm-1"></div>
-	            <div class="col-sm-2"><%= submit_tag ("Search"), class: 'btn btn-primary' %></div>
-	            <div class="col-sm-3"><%= link_to "Add Post",  new_post_path, class: 'btn btn-primary' %> </div>
-	            <div class="col-sm-3"><%= link_to "Upload",  upload_posts_path, class: 'btn btn-primary' %></div>
-	            <div class="col-sm-3"><%= link_to "Download",  posts_path(format: :csv), class: 'btn btn-primary' %></div>
-	        </div>
-		</div>
+        <div class="form-group row">
+            <div class="col-sm-2"><%= text_field_tag :search, params[:search], class: "form-control" %></div>
+            <div class="col-sm-2"><%= submit_tag ("Search"), class: 'btn btn-primary' %></div>
+            <div class="col-sm-2"><%= link_to "Add Post",  new_post_path, class: 'btn btn-primary' %> </div>
+            <div class="col-sm-2"><%= link_to "Upload",  upload_posts_path, class: 'btn btn-primary' %></div>
+            <div class="col-sm-2"><%= link_to "Download",  posts_path(format: :csv), class: 'btn btn-primary' %></div>
+        </div>
 	<% end %>
 </div>
 

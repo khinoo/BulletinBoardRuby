@@ -29,6 +29,13 @@ class UsersService
 		    users = UsersRepository.searchuser(name, email, created_from, created_to)
 	    end
 
+	    def updatePassword(params,current_user)
+	    	user = UsersRepository.findUserById(params[:id])
+	    	if user.authenticate(params[:current_password]) && params[:new_password] == params[:confirm_password]
+		      isPasswordUpdate = UsersRepository.updatePassword(user,params[:new_password],current_user)
+		    end
+	    end
+
 	    def updateProfile(user_profile_form)
 	    	user = findUserById(user_profile_form[:id])
 	    	updateUser = UsersRepository.updateUser(user,user_profile_form)
