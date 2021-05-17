@@ -9,12 +9,13 @@
                         <div class="col-md-8">
                             <%= file_field_tag :file, class: "form-control" %>
                         </div>
-   
+                        <br>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Import File
                                 </button>
+                                <%= link_to "Back",  url_for(:back), class: 'btn btn-light' %>
                             </div>
                         </div>
                     <% end %>
