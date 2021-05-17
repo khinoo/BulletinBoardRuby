@@ -29,9 +29,9 @@ class PostsRepository
         	post.update_attribute(:deleted_at, Time.now)
         end
 
-        def searchPostbysearchKey(searchKey)
+        def searchPostbysearchKey(searchKey,page)
 		  	@parameter = searchKey.downcase  
-    		results = Post.where("title LIKE :search OR description LIKE :search", search: "%#{@parameter}%")
+    		results = Post.where("title LIKE :search OR description LIKE :search", search: "%#{@parameter}%").paginate(:page => page, :per_page => 10)
 		end
 	end
 end

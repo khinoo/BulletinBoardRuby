@@ -26,7 +26,8 @@ class UsersService
 		    email = params[:email]
 		    created_from = params[:created_from]
 		    created_to = params[:created_to]
-		    users = UsersRepository.searchuser(name, email, created_from, created_to)
+		    page = params[:page]
+		    users = UsersRepository.searchuser(name, email, created_from, created_to,page)
 	    end
 
 	    def updatePassword(params,current_user)

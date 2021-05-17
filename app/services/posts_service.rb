@@ -28,8 +28,8 @@ class PostsService
 			destroyPost = PostsRepository.destroyPost(@destroyPost)
 		end
 
-		def searchPost(searchKey)
-	      posts = PostsRepository.searchPostbysearchKey(searchKey)
+		def searchPost(searchKey,page)
+	      posts = PostsRepository.searchPostbysearchKey(searchKey,page)
 	    end
 	end
 end

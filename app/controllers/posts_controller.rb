@@ -118,7 +118,7 @@ class PostsController < ApplicationController
   #return search post
   def search_post
     searchKey = params[:search]
-    @posts = PostsService.searchPost(searchKey)
+    @posts = PostsService.searchPost(searchKey,params[:page])
     render :index
   end
 

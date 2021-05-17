@@ -25,15 +25,15 @@ class UsersRepository
             user.update_attribute(:deleted_at, Time.now)
         end
 
-        def searchuser(name, email, created_from, created_to)
+        def searchuser(name, email, created_from, created_to,page)
             if created_from.present? and created_to.present?
-              users = User.where(deleted_at: nil).where("name like ? and email like ? and created_at >= ? and created_at <= ?", "%" + name + "%", "%" + email + "%", created_from, Date.parse(created_to)+1)
+              users = User.where(deleted_at: nil).where("name like ? and email like ? and created_at >= ? and created_at <= ?", "%" + name + "%", "%" + email + "%", created_from, Date.parse(created_to)+1).paginate(:page => page, :per_page => 10)
             elsif created_from.present?
-              users = User.where(deleted_at: nil).where("name like ? and email like ? and created_at >= ?", "%" + name + "%", "%" + email + "%", created_from)
+              users = User.where(deleted_at: nil).where("name like ? and email like ? and created_at >= ?", "%" + name + "%", "%" + email + "%", created_from).paginate(:page => page, :per_page => 10)
             elsif created_to.present?
-              users = User.where(deleted_at: nil).where("name like ? and email like ? and created_at <= ?", "%" + name + "%", "%" + email + "%", Date.parse(created_to)+1)
+              users = User.where(deleted_at: nil).where("name like ? and email like ? and created_at <= ?", "%" + name + "%", "%" + email + "%", Date.parse(created_to)+1).paginate(:page => page, :per_page => 10)
             else
-              users = User.where(deleted_at: nil).where("name like ? and email like ?", "%" + name + "%", "%" + email + "%")
+              users = User.where(deleted_at: nil).where("name like ? and email like ?", "%" + name + "%", "%" + email + "%").paginate(:page => page, :per_page => 10)
             end
         end
 
