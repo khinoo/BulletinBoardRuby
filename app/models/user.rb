@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_create { generate_token(:auth_token) }
+  
   belongs_to :created_user, class_name: "User", foreign_key: "create_user_id"
   belongs_to :updated_user, class_name: "User", foreign_key: "updated_user_id"
 
