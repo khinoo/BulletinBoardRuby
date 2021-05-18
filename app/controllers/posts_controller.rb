@@ -126,7 +126,7 @@ class PostsController < ApplicationController
   #function post import
   #params post import file
   def import
-  	Post.import(params[:file])
+  	Post.import(params[:file],current_user)
   	redirect_to root_url, notice: "Successfully Uploaded!!!"
   end
 

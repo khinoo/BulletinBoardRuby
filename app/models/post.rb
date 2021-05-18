@@ -15,12 +15,14 @@ class Post < ApplicationRecord
 	    end
 	end
 
-	def self.import(file)
+	def self.import(file,current_user)
         CSV.foreach(file.path, headers: true) do |row|
             post = Post.new
             post.title = row[0]
             post.description = row[1]
             post.status = row[2] == nil ? 1 : row[2]
+            post.create_user_id = current_user.id
+            post.updated_user_id = current_user.id
             post.save
         end
     end
