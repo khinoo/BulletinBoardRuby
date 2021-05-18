@@ -1,7 +1,11 @@
 class PostsRepository
 	class << self
-		def listAll(page)
-			@posts = Post.where(deleted_at: nil).paginate(:page => page, :per_page => 10)
+		def listAll(page,current_user)
+            if(current_user.role == "0")
+			    @posts = Post.where(deleted_at: nil).paginate(:page => page, :per_page => 10)
+            else
+                @posts = Post.where(create_user_id: current_user.id).where(deleted_at: nil).paginate(:page => page, :per_page => 10)
+            end
 		end
 
 		def findPostById(id)

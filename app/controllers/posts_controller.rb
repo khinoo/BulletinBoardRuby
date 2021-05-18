@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   #function PostList
   #return all post
   def index
-  	@posts = PostsService.listAll(params[:page])
+  	@posts = PostsService.listAll(params[:page],current_user)
     respond_to do |format|
       format.html
       format.csv { send_data @posts.to_csv, filename: "posts_#{Date.today}.csv" }
