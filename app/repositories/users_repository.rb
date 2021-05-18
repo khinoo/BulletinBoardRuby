@@ -38,6 +38,7 @@ class UsersRepository
         end
 
         def updateUser(user,user_profile_param)
+            user_profile_param[:role] = user_profile_param[:role] == "Admin" ? 0 : 1
             updateProfile = user.update(
                 'name' => user_profile_param[:name],
                 'email'=> user_profile_param[:email],
