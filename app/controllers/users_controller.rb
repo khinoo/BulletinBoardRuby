@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
+  before_action :authorized
   # function UserList
   # return userlist
   def index

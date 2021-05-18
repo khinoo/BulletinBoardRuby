@@ -1,12 +1,17 @@
 class ApplicationController < ActionController::Base
-	before_action :require_login
-  	helper_method :current_user
+  helper_method :logged_in?, :current_user
 
-	def require_login
-	    redirect_to new_session_path unless session.include? :user_id
-	end
+  def current_user
+    if cookies[:user_id]
+      @user = User.find(cookies[:user_id])
+    end
+  end
 
-	def current_user
-	    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-	end
+  def logged_in?
+    !!current_user
+  end
+
+  def authorized
+    redirect_to login_path unless logged_in?
+  end
 end

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'sessions/create'
-  delete "/session", to: "sessions#destroy"
+  get 'password_resets/new'
   root "posts#index"
 
   #Post routes
@@ -43,6 +41,12 @@ Rails.application.routes.draw do
       get :update_password
     end
   end
-  
-  resources :sessions, only: [:new, :create, :destroy]
+
+  resources :password_resets
+
+  get '/login' => 'sessions#login'
+  post '/login' => 'sessions#create'
+  get 'sessions/new'
+  get 'sessions/create'
+  delete "/session", to: "sessions#destroy"
 end

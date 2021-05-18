@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authorized
   #function PostList
   #return all post
   def index
