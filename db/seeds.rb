@@ -5,5 +5,73 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = User.new(name: 'user01',email:'user01@gmail.com',password_digest: "123456",profile: "user01.jpg",role: 1,phone: "09254312",address: "Insein",dob: "2021-04-01",create_user_id: 1,updted_user_id: 1,updated_at: Time.now)
-user.save
+User.destroy_all
+Post.destroy_all
+
+User.create!([{
+  id: 1,
+  name: 'Admin',
+  email:'Admin@gmail.com',
+  password_digest: "$2a$12$udh8VoKni2jXZIC0WCASZOy/hcI39VC0V1Xi4xoYBwnkhXiaPfH9i", # BCrypt::Password.create("111111")
+  profile: "Admin.jpg",
+  role: 0,
+  phone: "09766222245",
+  address: "Yangon",
+  dob: "2000-04-01",
+  create_user_id: 1,
+  updated_user_id: 1,
+  deleted_user_id: "NULL",
+  deleted_at: "NULL",
+  created_at: Time.now,
+  updated_at: Time.now,
+  password_reset_token: "NULL",
+  password_reset_sent_at: "NULL",
+  auth_token: "NULL"
+},
+{
+  id: 2,
+  name: 'User',
+  email:'User@gmail.com',
+  password_digest: "$2a$12$udh8VoKni2jXZIC0WCASZOy/hcI39VC0V1Xi4xoYBwnkhXiaPfH9i", # BCrypt::Password.create("111111")
+  profile: "User.jpg",
+  role: 1,
+  phone: "09766222245",
+  address: "Yangon",
+  dob: "2000-04-01",
+  create_user_id: 1,
+  updated_user_id: 1,
+  deleted_user_id: "NULL",
+  deleted_at: "NULL",
+  created_at: Time.now,
+  updated_at: Time.now,
+  password_reset_token: "NULL",
+  password_reset_sent_at: "NULL",
+  auth_token: "NULL"
+}
+])
+
+Post.create!([{
+  id: 1,
+  title: 'Novel',
+  description:'Special Award Prize',
+  status: 1,
+  create_user_id: 1,
+  updated_user_id: 1,
+  deleted_user_id: "NULL",
+  deleted_at: "NULL",
+  created_at: Time.now,
+  updated_at: Time.now,
+},
+{
+  id: 2,
+  title: 'Travel',
+  description:'Related With Short Trip',
+  status: 0,
+  create_user_id: 2,
+  updated_user_id: 2,
+  deleted_user_id: "NULL",
+  deleted_at: "NULL",
+  created_at: Time.now,
+  updated_at: Time.now,
+}
+])
