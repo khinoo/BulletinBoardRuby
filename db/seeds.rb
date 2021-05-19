@@ -9,7 +9,6 @@ User.destroy_all
 Post.destroy_all
 
 User.create!([{
-  id: 1,
   name: 'Admin',
   email:'Admin@gmail.com',
   password_digest: "$2a$12$udh8VoKni2jXZIC0WCASZOy/hcI39VC0V1Xi4xoYBwnkhXiaPfH9i", # BCrypt::Password.create("111111")
@@ -29,7 +28,6 @@ User.create!([{
   auth_token: "NULL"
 },
 {
-  id: 2,
   name: 'User',
   email:'User@gmail.com',
   password_digest: "$2a$12$udh8VoKni2jXZIC0WCASZOy/hcI39VC0V1Xi4xoYBwnkhXiaPfH9i", # BCrypt::Password.create("111111")
@@ -51,7 +49,6 @@ User.create!([{
 ])
 
 Post.create!([{
-  id: 1,
   title: 'Novel',
   description:'Special Award Prize',
   status: 1,
@@ -63,7 +60,6 @@ Post.create!([{
   updated_at: Time.now,
 },
 {
-  id: 2,
   title: 'Travel',
   description:'Related With Short Trip',
   status: 0,
