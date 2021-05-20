@@ -16,9 +16,9 @@ class UsersService
 			@user = UsersRepository.findUserById(id)
 		end
 
-		def destroyUser(id)
+		def destroyUser(id,current_user)
 			@destroyUser = UsersRepository.findUserById(id)
-			destroyUser = UsersRepository.destroyUser(@destroyUser)
+			destroyUser = UsersRepository.destroyUser(@destroyUser,current_user)
 		end
 
 		def searchUser(params)

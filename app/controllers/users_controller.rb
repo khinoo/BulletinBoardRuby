@@ -165,7 +165,7 @@ class UsersController < ApplicationController
   #function user destroy
   #params user id
   def destroy
-  	UsersService.destroyUser(params[:id])
+  	UsersService.destroyUser(params[:id],current_user)
   	redirect_to users_path
   end
 

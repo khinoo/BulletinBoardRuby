@@ -110,7 +110,7 @@ class PostsController < ApplicationController
   #function post destroy
   #params post id
   def destroy
-  	PostsService.destroyPost(params[:id])
+  	PostsService.destroyPost(params[:id],current_user)
   	redirect_to root_path
   end
 

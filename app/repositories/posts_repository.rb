@@ -29,8 +29,11 @@ class PostsRepository
         	updatePost = post.update(post_form)
         end
 
-        def destroyPost(post)
-        	post.update_attribute(:deleted_at, Time.now)
+        def destroyPost(post,current_user)
+        	updatePost = post.update(
+                'deleted_user_id' =>  current_user.id,
+                'deleted_at'=> Time.now,
+            )
         end
 
         def searchPostbysearchKey(searchKey,page)

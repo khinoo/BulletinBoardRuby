@@ -21,8 +21,11 @@ class UsersRepository
             @user = User.find(id)
         end
 
-        def destroyUser(user)
-            user.update_attribute(:deleted_at, Time.now)
+        def destroyUser(user,current_user)
+            updateUser = user.update(
+                'deleted_user_id' =>  current_user.id,
+                'deleted_at'=> Time.now,
+            )
         end
 
         def searchuser(name, email, created_from, created_to,page)

@@ -23,9 +23,9 @@ class PostsService
 			updatePost = PostsRepository.updatePost(post,post_form)
 		end
 
-		def destroyPost(id)
+		def destroyPost(id,current_user)
 			@destroyPost = PostsRepository.findPostById(id)
-			destroyPost = PostsRepository.destroyPost(@destroyPost)
+			destroyPost = PostsRepository.destroyPost(@destroyPost,current_user)
 		end
 
 		def searchPost(searchKey,page)
