@@ -157,7 +157,7 @@ class UsersController < ApplicationController
     else
     updatePassword = UsersService.updatePassword(change_password_params,current_user)
       if updatePassword
-        redirect_to users_path
+        redirect_to users_path, notice: "Successfully Update the Password!!!."
       else
         redirect_to change_password_user_path, notice: "New Password and New Confirm Password must be same !!!."
       end
