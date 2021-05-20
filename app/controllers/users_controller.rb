@@ -69,9 +69,9 @@ class UsersController < ApplicationController
   def create
   	isSaveUser = UsersService.createUser(user_params,current_user)
     if isSaveUser
-      	redirect_to users_path
+      	redirect_to users_path, notice: "Successfully User Created!!!."
     else
-    	flash[:error] = "Error- please try to create an account again."
+    	flash[:error] = "Something wrong in User Create Please Check again."
       render :new
     end
   end
@@ -107,6 +107,7 @@ class UsersController < ApplicationController
 	  	@user_profile_form.profile = profilename
 	end
   	unless @user_profile_form.valid?
+      flash[:error] = "Something wrong in User Update Please Check again."
       render :edit_profile
     else
       redirect_to :action => "update_confirm", id: @user_profile_form.id, name: @user_profile_form.name, email: @user_profile_form.email, role: @user_profile_form.role, phone: @user_profile_form.phone, dob: @user_profile_form.dob, address: @user_profile_form.address, profile: @user_profile_form.profile
@@ -135,8 +136,9 @@ class UsersController < ApplicationController
   def user_update
   	 saveupdateProfile = UsersService.updateProfile(user_profile_params)
   	 if saveupdateProfile 
-  	 	redirect_to users_path
+  	 	redirect_to users_path, notice: "Successfully Updated!!!."
   	 else
+      flash[:error] = "Something wrong in User Update Please Check again."
   	 	render :edit_profile
   	 end
   end
@@ -166,7 +168,7 @@ class UsersController < ApplicationController
   #params user id
   def destroy
   	UsersService.destroyUser(params[:id],current_user)
-  	redirect_to users_path
+  	redirect_to users_path, notice: "Successfully Destroy User!!!."
   end
 
   #function search user

@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   	savePost = PostsService.createPost(post_params,current_user)
 
   	if savePost
-  		redirect_to posts_path
+  		redirect_to posts_path, notice: "Successfully Created Post!!!."
   	else
   		render :new
   	end
@@ -101,7 +101,7 @@ class PostsController < ApplicationController
   def post_update
   	updatePost = PostsService.updatePost(post_params,current_user)
   	if updatePost
-  		redirect_to posts_path
+  		redirect_to posts_path, notice: "Successfully Updated Post!!!."
   	else
   		render :edit
   	end 
