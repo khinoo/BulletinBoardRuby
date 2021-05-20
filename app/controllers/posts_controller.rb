@@ -126,8 +126,22 @@ class PostsController < ApplicationController
   #function post import
   #params post import file
   def import
-  	Post.import(params[:file],current_user)
-  	redirect_to root_url, notice: "Successfully Uploaded!!!"
+    accepted_formats = [".csv"]
+    if !params[:file].present?
+      redirect_to upload_posts_path, notice: "Please choose a file !!!."
+    elsif !accepted_formats.include? File.extname(params[:file])
+      redirect_to upload_posts_path, notice: "Uploaded File must be csv !!!."
+    elsif params[:file].size > 2048 
+      redirect_to upload_posts_path, notice: "Uploaded File size greater than 2MB !!!."
+    else
+      error = PostsHelper.check_csvdata(params[:file])
+      if error.present?
+        redirect_to upload_posts_path, notice: error
+      else
+        Post.import(params[:file],current_user.id)
+        redirect_to root_path, notice: "Successfully Uploaded!!!"
+      end
+    end
   end
 
   private
