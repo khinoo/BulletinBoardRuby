@@ -36,9 +36,13 @@ class PostsRepository
             )
         end
 
-        def searchPostbysearchKey(searchKey,page)
-		  	@parameter = searchKey.downcase  
-    		results = Post.where("title LIKE :search OR description LIKE :search", search: "%#{@parameter}%").paginate(:page => page, :per_page => 10)
+        def searchPostbysearchKey(searchKey,page,current_user)
+		  	@parameter = searchKey.downcase
+            if(current_user.role == "0")
+                results = Post.joins(:created_user).where("name LIKE :search OR title LIKE :search OR description LIKE :search", search: "%#{@parameter}%").paginate(:page => page, :per_page => 10)
+            else
+                results = Post.joins(:created_user).where(create_user_id: current_user.id).where("name LIKE :search OR title LIKE :search OR description LIKE :search", search: "%#{@parameter}%").paginate(:page => page, :per_page => 10)
+            end
 		end
 	end
 end

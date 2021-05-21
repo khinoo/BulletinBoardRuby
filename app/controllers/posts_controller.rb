@@ -119,7 +119,7 @@ class PostsController < ApplicationController
   #return search post
   def search_post
     searchKey = params[:search]
-    @posts = PostsService.searchPost(searchKey,params[:page])
+    @posts = PostsService.searchPost(searchKey,params[:page],current_user)
     render :index
   end
 
@@ -138,7 +138,14 @@ class PostsController < ApplicationController
       if error.present?
         redirect_to upload_posts_path, notice: error
       else
-        Post.import(params[:file],current_user.id)
+        dir = "#{Rails.root}/app/assets/#{current_user.id}/csv/"
+        FileUtils.mkdir_p(dir) unless File.directory?(dir)
+        filename = current_user.name+ "_" + Time.now.strftime('%Y%m%d_%H%M%S') + "." + ActiveStorage::Filename.new(params[:file].original_filename).extension
+        dirname = "app/assets/#{current_user.id}"
+        File.open(Rails.root.join(dirname, 'csv', filename ), 'wb') do |f|
+            f.write(params[:file].read)
+        end
+        Post.import(params[:file],current_user)
         redirect_to root_path, notice: "Successfully Uploaded!!!"
       end
     end
@@ -149,3 +156,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:id, :title, :description, :status, :create_user_id, :updated_user_id, :updated_at)
   end
 end
+
