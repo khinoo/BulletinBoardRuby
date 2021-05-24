@@ -6,8 +6,8 @@
 		<div class="form-group row">
             <div class="col-sm-2"><%= text_field_tag :name, params[:name], class: "form-control", placeholder: 'Name' %></div>
             <div class="col-sm-2"><%= text_field_tag :email, params[:email], class: "form-control", placeholder: 'Email' %></div>
-            <div class="col-sm-2"><%= date_field_tag :created_from, params[:created_from], class: "form-control", placeholder: 'Created From' %></div>
-            <div class="col-sm-2"><%= date_field_tag :created_to, params[:created_to], class: "form-control", placeholder: 'Created To' %></div>
+            <div class="col-sm-2"><%= text_field_tag :created_from, params[:created_from], class: "form-control datepicker", placeholder: 'Created From' %></div>
+            <div class="col-sm-2"><%= text_field_tag :created_to, params[:created_to], class: "form-control datepicker", placeholder: 'Created To' %></div>
             <div class="col-sm-2"><%= submit_tag ("Search"), class: 'btn btn-primary' %></div>
             <% if current_user.role == "0" %>
             <div class="col-sm-2"><%= link_to "Add User",  new_user_path, class: 'btn btn-primary' %> </div>
